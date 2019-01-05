@@ -1,27 +1,21 @@
 import React from 'react';
 import _ from '../style.scss';
-import BookItem from './BookItem';
 
 class ContentContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            booksArr: []
-        }
     }
-
-    componentWillMount() {
-        this.setState({
-            booksArr: JSON.parse(localStorage.getItem('books'))
-        });
-
-    }
-
+    
     render() {
+        let allBooks = this.props.booksArr;
+        let mostRecent = this.props.booksArr.filter(item => item.mostRecent);
+        let mostPopular = this.props.booksArr.filter(item => item.mostPopular);
+        let freeBooks = this.props.booksArr.filter(item => item.freeBook);
+        let allArr = [allBooks, mostRecent, mostPopular, freeBooks];
         return (
             <div className="content__container">
-                {this.state.booksArr.map(item => (
-                    <div className="book-item">
+                {allArr[this.props.tab].map(item => (
+                    <div className="book-item" key={item.title}>
                         <div className="book-item__picture"
                             style={{backgroundImage: item.posterURL}}
                         ></div>
