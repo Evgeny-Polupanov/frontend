@@ -12,18 +12,36 @@ class Modal extends React.Component {
         this.chooseTab = this.chooseTab.bind(this);
     }
 
-    chooseTab(e) {
+    chooseTab(e) { 
         e.target.parentElement.childNodes.forEach(item => {
             item.className = 'modal__tab';
         });
         e.target.className = 'modal__tab modal__tab_active';
-        let buttonsArr = [].slice.call(e.target.parentElement.childNodes);
+        const buttonsArr = [].slice.call(e.target.parentElement.childNodes);
         this.setState({
-            currentTab: buttonsArr.indexOf(e.target)
-        })
+            currentTab: buttonsArr.indexOf(e.currentTarget)
+        });
+    }
+
+    componentDidUpdate() {
+        switch (this.state.currentTab) {
+            case 0:
+            document.getElementById('modal__general').className = '';
+            document.getElementById('modal__genre').className = 'modal__hidden';
+            break;
+            case 1:
+            document.getElementById('modal__general').className = 'modal__hidden';
+            document.getElementById('modal__genre').className = '';
+            break;
+        }
+    }
+
+    addBook() {
+        
     }
 
     render() {
+        //console.log(this.state.currentTab);
         return (
             <div className="modal__cover modal__cover_closed">
                 <div className="modal">
@@ -31,11 +49,11 @@ class Modal extends React.Component {
                         <div className="modal__h">Add New Books</div>
                         <button className="modal__close" onClick={this.props.closeModal}></button>
                     </div>
-                    <form class="modal__form">
+                    <form className="modal__form">
                         <div className="modal__wrapper">
                             <ModalTabs
                                 tab={this.state.currentTab}
-                                chooseTab={this.chooseTab}
+                                chooseTab={this.chooseTab.bind(this)}
                             />
                             <ModalContent
                                 tab={this.state.currentTab}

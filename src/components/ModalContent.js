@@ -29,7 +29,7 @@ class ModalContent extends React.Component {
                     <div className="modal__input-h">Summary</div>
                     <input type="text" className="modal__input" placeholder="Enter Summary" />
                 </div>
-                <div id="modal__genre">
+                <div id="modal__genre" className="modal__hidden">
                     <div className="modal__input-h">Genre</div>
                     <input type="text" className="modal__input" placeholder="Enter Genre" />
                 </div>

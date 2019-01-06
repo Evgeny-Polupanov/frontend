@@ -19,13 +19,14 @@ class Content extends React.Component {
             item.className = 'content__collection';
         });
         e.target.className = 'content__collection content__collection_active';
-        let buttonsArr = [].slice.call(e.target.parentElement.childNodes);
+        const buttonsArr = [].slice.call(e.target.parentElement.childNodes);
         this.setState({
             currentTab: buttonsArr.indexOf(e.target)
         })
     }
 
     render() {
+        //console.log(this.state.currentTab);
         return (
             <div className="content">
                <ContentHeading
