@@ -5,6 +5,7 @@ import Aside from './components/Aside';
 import Content from './components/Content';
 import storedBooks from './Books.js';
 import Modal from './components/Modal';
+import { TSExpressionWithTypeArguments } from 'babel-types';
 
 localStorage.setItem('books', JSON.stringify(storedBooks));
 
@@ -97,7 +98,7 @@ class App extends React.Component {
     handleChange(e) {
         const target = e.target;
         const name = target.name;
-        const value = target.value;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
         const book = this.state.newBook;
         book[name] = value;
         this.setState({

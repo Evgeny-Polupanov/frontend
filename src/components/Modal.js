@@ -67,7 +67,7 @@ class Modal extends React.Component {
                         <div className="modal__wrapper">
                             <ModalTabs
                                 tab={this.state.currentTab}
-                                chooseTab={this.chooseTab.bind(this)}
+                                chooseTab={this.chooseTab}
                             />
                             <ModalContent
                                 tab={this.state.currentTab}
