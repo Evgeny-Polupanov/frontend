@@ -67,7 +67,8 @@ class App extends React.Component {
             let booksArr = JSON.parse(localStorage.getItem('books'));
             booksArr.push(this.state.newBook);
             localStorage.setItem('books', JSON.stringify(booksArr));
-            this.closeModal();
+            document.querySelector('.modal').style.display = 'none';
+            document.querySelector('.modal__success').style.display = 'block';
         } else {
             this.setState({
                 errors

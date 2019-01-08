@@ -469,3 +469,30 @@ html {
     width: 96px;
     margin-right: 0;
 }
+
+.modal__success {
+    display: none;
+    width: 500px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.modal__success-content {
+    font-family: 'Arial';
+    color: #444c63;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 36px;
+}
+
+.modal__success-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #eef1f7;
+    padding: 13px 20px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import _ from '../style.scss';
 import ModalTabs from './ModalTabs';
 import ModalContent from './ModalContent';
+import ModalSuccess from './ModalSuccess';
 
 class Modal extends React.Component {
     constructor(props) {
@@ -71,6 +72,10 @@ class Modal extends React.Component {
                         </div>
                     </form>
                 </div>
+                <ModalSuccess 
+                    title={this.props.newBook.title} 
+                    closeModal={this.props.closeModal}
+                />
             </div>
         )
     }
