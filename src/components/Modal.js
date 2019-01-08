@@ -7,9 +7,11 @@ class Modal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentTab: 0
+            currentTab: 0,
+            
         };
         this.chooseTab = this.chooseTab.bind(this);
+        
     }
 
     chooseTab(e) { 
@@ -36,12 +38,7 @@ class Modal extends React.Component {
         }
     }
 
-    addBook() {
-        
-    }
-
     render() {
-        //console.log(this.state.currentTab);
         return (
             <div className="modal__cover modal__cover_closed">
                 <div className="modal">
@@ -49,7 +46,7 @@ class Modal extends React.Component {
                         <div className="modal__h">Add New Books</div>
                         <button className="modal__close" onClick={this.props.closeModal}></button>
                     </div>
-                    <form className="modal__form">
+                    <form className="modal__form" onSubmit={this.props.addBook}>
                         <div className="modal__wrapper">
                             <ModalTabs
                                 tab={this.state.currentTab}
@@ -57,6 +54,15 @@ class Modal extends React.Component {
                             />
                             <ModalContent
                                 tab={this.state.currentTab}
+                                title={this.props.newBook.title}
+                                author={this.props.newBook.author}
+                                publisher={this.props.newBook.publisher}
+                                paperback={this.props.newBook.paperback}
+                                isbn={this.props.newBook.isbn}
+                                summary={this.props.newBook.summary}
+                                genre={this.props.newBook.genre}
+                                handleChange={this.props.handleChange}
+                                errors={this.props.errors}
                             />
                         </div>
                         <div className="modal__toolbar">

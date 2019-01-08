@@ -9,7 +9,7 @@ class Content extends React.Component {
         super(props);
         this.state = {
             currentTab: 0,
-            booksArr: JSON.parse(localStorage.getItem('books'))
+            
         };
         this.chooseTab = this.chooseTab.bind(this);
     }
@@ -26,7 +26,6 @@ class Content extends React.Component {
     }
 
     render() {
-        //console.log(this.state.currentTab);
         return (
             <div className="content">
                <ContentHeading
@@ -35,7 +34,8 @@ class Content extends React.Component {
                 />
                 <ContentContainer 
                     tab={this.state.currentTab} 
-                    booksArr={this.state.booksArr}
+                    booksArr={this.props.booksArr}
+                    readBook={this.props.readBook}
                 />
             </div>
         )
