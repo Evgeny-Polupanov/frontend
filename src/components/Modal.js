@@ -31,10 +31,26 @@ class Modal extends React.Component {
             case 0:
             document.getElementById('modal__general').className = '';
             document.getElementById('modal__genre').className = 'modal__hidden';
+            document.getElementById('modal__poster').className = 'modal__hidden';
+            document.getElementById('modal__info').className = 'modal__hidden';
             break;
             case 1:
             document.getElementById('modal__general').className = 'modal__hidden';
             document.getElementById('modal__genre').className = '';
+            document.getElementById('modal__poster').className = 'modal__hidden';
+            document.getElementById('modal__info').className = 'modal__hidden';
+            break;
+            case 2:
+            document.getElementById('modal__general').className = 'modal__hidden';
+            document.getElementById('modal__genre').className = 'modal__hidden';
+            document.getElementById('modal__poster').className = '';
+            document.getElementById('modal__info').className = 'modal__hidden';
+            break;
+            case 3:
+            document.getElementById('modal__general').className = 'modal__hidden';
+            document.getElementById('modal__genre').className = 'modal__hidden';
+            document.getElementById('modal__poster').className = 'modal__hidden';
+            document.getElementById('modal__info').className = '';
             break;
         }
     }
@@ -62,6 +78,10 @@ class Modal extends React.Component {
                                 isbn={this.props.newBook.isbn}
                                 summary={this.props.newBook.summary}
                                 genre={this.props.newBook.genre}
+                                posterURL={this.props.newBook.posterURL}
+                                mostRecent={this.props.newBook.mostRecent}
+                                mostPopular={this.props.newBook.mostPopular}
+                                freeBook={this.props.newBook.freeBook}
                                 handleChange={this.props.handleChange}
                                 errors={this.props.errors}
                             />

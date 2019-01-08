@@ -42,6 +42,8 @@ class App extends React.Component {
 
     closeModal() {
         document.querySelector('.modal__cover').className = 'modal__cover modal__cover_closed';
+        document.querySelector('.modal').style.display = 'block';
+        document.querySelector('.modal__success').style.display = 'none';
         this.setState({
             booksArr: JSON.parse(localStorage.getItem('books')),
             newBook: {

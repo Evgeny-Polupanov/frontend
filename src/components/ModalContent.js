@@ -48,6 +48,30 @@ class ModalContent extends React.Component {
                      value={this.props.genre} name="genre" onChange={this.props.handleChange} placeholder="Enter Genre" />
                     <div className="modal__notification"></div>
                 </div>
+                <div id="modal__poster" className="modal__hidden">
+                    <div className="modal__input-h">Poster URL</div>
+                    <input type="text" className="modal__input"
+                        value={this.props.posterURL} name="posterURL" onChange={this.props.handleChange}
+                        placeholder="Enten poster URL address" 
+                    />
+                    <div className="modal__notification"></div>
+                </div>
+                <div id="modal__info" className="modal__hidden">
+                    <label>
+                        <input type="checkbox" value={this.props.mostRecent} onChange={this.props.handleChange} />
+                        <span className="modal__input-h">Most Recent</span>
+                    </label>
+                    <br />
+                    <label>
+                        <input type="checkbox" value={this.props.mostPopular} onChange={this.props.handleChange} />
+                        <span className="modal__input-h">Most Populap</span>
+                    </label>
+                    <br />
+                    <label>
+                        <input type="checkbox" value={this.props.freeBook} onChange={this.props.handleChange} />
+                        <span className="modal__input-h">Free Book</span>
+                    </label>
+                </div>
             </div>
         )
     }
