@@ -58,17 +58,17 @@ class ModalContent extends React.Component {
                 </div>
                 <div id="modal__info" className="modal__hidden">
                     <label>
-                        <input type="checkbox" name="mostRecent" value={this.props.mostRecent} onChange={this.props.handleChange} />
+                        <input type="checkbox" name="mostRecent" checked={this.props.mostRecent} onChange={this.props.handleChange} />
                         <span className="modal__input-h">Most Recent</span>
                     </label>
                     <br />
                     <label>
-                        <input type="checkbox" name="mostPopular" value={this.props.mostPopular} onChange={this.props.handleChange} />
+                        <input type="checkbox" name="mostPopular" checked={this.props.mostPopular} onChange={this.props.handleChange} />
                         <span className="modal__input-h">Most Populap</span>
                     </label>
                     <br />
                     <label>
-                        <input type="checkbox" name="freeBook" value={this.props.freeBook} onChange={this.props.handleChange} />
+                        <input type="checkbox" name="freeBook" checked={this.props.freeBook} onChange={this.props.handleChange} />
                         <span className="modal__input-h">Free Book</span>
                     </label>
                 </div>
