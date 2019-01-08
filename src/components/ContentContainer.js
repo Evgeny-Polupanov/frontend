@@ -19,7 +19,7 @@ class ContentContainer extends React.Component {
                     <BookItem 
                         item={item}
                         readBook={this.props.readBook}
-                        key={item.title}
+                        key={index}
                     />
                 ))}
             </div>
