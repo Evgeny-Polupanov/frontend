@@ -34,6 +34,7 @@ class App extends React.Component {
         this.addBook = this.addBook.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.readBook = this.readBook.bind(this);
+        //this.searchBooks = this.searchBooks.bind(this);
     }
 
     openModal() {
@@ -43,6 +44,10 @@ class App extends React.Component {
 
     closeModal() {
         document.querySelector('.modal__cover').className = 'modal__cover modal__cover_closed';
+        document.querySelector('.modal__h').innerHTML = 'Add New Book';
+        document.querySelectorAll('.modal__notification').forEach(item => {
+            item.innerHTML = '';
+        })
         document.querySelector('.modal').style.display = 'block';
         document.querySelector('.modal__success').style.display = 'none';
         this.setState({
@@ -52,7 +57,7 @@ class App extends React.Component {
                 author: '',
                 publisher: '',
                 paperback: '',
-                isbn: 1,
+                isbn: '',
                 summary: '',
                 genre: '',
                 posterURL: '',
@@ -88,7 +93,7 @@ class App extends React.Component {
             errors.author = 'Enter Author'
         }
         if (form.isbn !== '') {
-            if (!form.isbn.match(/\d+/)) {
+            if (!form.isbn.match(/^\d+$/)) {
                 errors.isbn = 'ISBN should contain only numbers'
             }
         }
@@ -117,7 +122,18 @@ class App extends React.Component {
         document.querySelector('.modal__toolbar').style.display = 'none';
         this.setState({
             newBook: item
-        })
+        });
+        document.querySelector('.modal__h').innerHTML = item.title;
+    }
+
+    searchBooks(books, query) {
+        let foundBooks = books.filter(book => {
+            for (let key in book) {   
+                if (book[key].indexOf(query) > -1) return true
+                else return false;
+            }
+        });
+        return foundBooks;
     }
 
     render() {
@@ -129,6 +145,7 @@ class App extends React.Component {
                 <Content 
                     booksArr={this.state.booksArr}
                     readBook={this.readBook}
+                    searchBooks={this.searchBooks}
                 />
                 <Modal
                     closeModal={this.closeModal}

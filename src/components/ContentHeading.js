@@ -17,9 +17,9 @@ class ContentHeading extends React.Component {
                         <button className="content__collection" onClick={this.props.chooseTab}>Most Popular</button>
                         <button className="content__collection" onClick={this.props.chooseTab}>Free Books</button>
                     </div>
-                    <form className="content__search">
-                        <input type="text" className="content__search-input" placeholder="Enter a keyword" />
-                        <button type="button" className="content__search-submit"></button>
+                    <form className="content__search" onSubmit={this.props.searchSubmit}>
+                        <textarea className="content__search-input" placeholder="Enter a keyword" />
+                        <button type="submit" className="content__search-submit"></button>
                     </form>
                 </div>
             </div>

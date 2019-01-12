@@ -31,26 +31,10 @@ class Modal extends React.Component {
             case 0:
             document.getElementById('modal__general').className = '';
             document.getElementById('modal__genre').className = 'modal__hidden';
-            document.getElementById('modal__poster').className = 'modal__hidden';
-            document.getElementById('modal__info').className = 'modal__hidden';
             break;
             case 1:
             document.getElementById('modal__general').className = 'modal__hidden';
             document.getElementById('modal__genre').className = '';
-            document.getElementById('modal__poster').className = 'modal__hidden';
-            document.getElementById('modal__info').className = 'modal__hidden';
-            break;
-            case 2:
-            document.getElementById('modal__general').className = 'modal__hidden';
-            document.getElementById('modal__genre').className = 'modal__hidden';
-            document.getElementById('modal__poster').className = '';
-            document.getElementById('modal__info').className = 'modal__hidden';
-            break;
-            case 3:
-            document.getElementById('modal__general').className = 'modal__hidden';
-            document.getElementById('modal__genre').className = 'modal__hidden';
-            document.getElementById('modal__poster').className = 'modal__hidden';
-            document.getElementById('modal__info').className = '';
             break;
         }
     }
@@ -60,7 +44,7 @@ class Modal extends React.Component {
             <div className="modal__cover modal__cover_closed">
                 <div className="modal">
                     <div className="modal__heading">
-                        <div className="modal__h">Add New Books</div>
+                        <div className="modal__h">Add New Book</div>
                         <button className="modal__close" onClick={this.props.closeModal}></button>
                     </div>
                     <form className="modal__form" onSubmit={this.props.addBook}>

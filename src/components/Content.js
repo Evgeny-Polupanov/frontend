@@ -9,9 +9,13 @@ class Content extends React.Component {
         super(props);
         this.state = {
             currentTab: 0,
-            
+            allBooks: this.props.booksArr,
+            mostRecent: this.props.booksArr.filter(item => item.mostRecent),
+            mostPopular: this.props.booksArr.filter(item => item.mostPopular),
+            freeBooks: this.props.booksArr.filter(item => item.freeBook)
         };
         this.chooseTab = this.chooseTab.bind(this);
+        this.searchSubmit = this.searchSubmit.bind(this);
     }
        
     chooseTab(e) {
@@ -24,6 +28,23 @@ class Content extends React.Component {
             currentTab: buttonsArr.indexOf(e.target)
         })
     }
+    
+    searchSubmit(e) {
+        e.preventDefault();
+        let result;
+        if (document.querySelector('.content__search-input').value !== '') {
+            result = this.props.searchBooks(
+                this.props.booksArr,
+                document.querySelector('.content__search-input').value
+            );
+        } else result = this.props.booksArr;
+        this.setState({
+            allBooks: result,
+            mostRecent: result.filter(item => item.mostRecent),
+            mostPopular: result.filter(item => item.mostPopular),
+            freeBooks: result.filter(item => item.freeBook)
+        });
+    }
 
     render() {
         return (
@@ -31,11 +52,19 @@ class Content extends React.Component {
                <ContentHeading
                     tab={this.state.currentTab}
                     chooseTab={this.chooseTab}
+                    //searchBooks={this.props.searchBooks}
+                    searchSubmit={this.searchSubmit}
+                    allBooks={this.state.allBooks}
                 />
                 <ContentContainer 
                     tab={this.state.currentTab} 
                     booksArr={this.props.booksArr}
                     readBook={this.props.readBook}
+                    searchSubmit={this.props.searchSubmit}
+                    allBooks={this.state.allBooks}
+                    mostRecent={this.state.mostRecent}
+                    mostPopular={this.state.mostPopular}
+                    freeBooks={this.state.freeBooks}
                 />
             </div>
         )

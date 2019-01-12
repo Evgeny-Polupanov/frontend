@@ -8,11 +8,16 @@ class ContentContainer extends React.Component {
     }
     
     render() {
-        let allBooks = this.props.booksArr;
-        let mostRecent = this.props.booksArr.filter(item => item.mostRecent);
-        let mostPopular = this.props.booksArr.filter(item => item.mostPopular);
-        let freeBooks = this.props.booksArr.filter(item => item.freeBook);
-        let allArr = [allBooks, mostRecent, mostPopular, freeBooks];
+        // let allBooks = this.props.booksArr;
+        // let mostRecent = this.props.booksArr.filter(item => item.mostRecent);
+        // let mostPopular = this.props.booksArr.filter(item => item.mostPopular);
+        // let freeBooks = this.props.booksArr.filter(item => item.freeBook);
+        let allArr = [
+            this.props.allBooks, 
+            this.props.mostRecent, 
+            this.props.mostPopular, 
+            this.props.freeBooks
+        ];
         return (
             <div className="content__container">
                 {allArr[this.props.tab].map((item, index) => (

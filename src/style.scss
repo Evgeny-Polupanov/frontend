@@ -3,7 +3,6 @@ html {
 }
 
 .body {
-    max-width: 1680px;
     margin: 0 auto;
     height: 100%;
 }
@@ -12,6 +11,7 @@ html {
     display: flex;
     height: 100%;
     position: relative;
+    min-height: 100vh;
 }
 
 .aside {
@@ -187,6 +187,7 @@ html {
     cursor: pointer;
     border-radius: 50px;
     transition: .3s;
+    margin-right: 8px;
 }
 
 .content__collection_active {
@@ -209,7 +210,9 @@ html {
 .content__search-input {
     border: none;
     background-color: transparent;
-    padding: 0 20px;
+    padding: 6px 20px;
+    resize: none;
+    box-sizing: border-box;
     width: 110px;
     height: 100%;
     font-family: 'Arial';
@@ -248,7 +251,7 @@ html {
 
 .book-item__picture {
     background : {
-        //image: url('/images/book-0.jpg');
+        image: url('/images/book-0.jpg');
         size: cover;
         position: center;
         repeat: no-repeat;
@@ -396,7 +399,7 @@ html {
 
 .modal__notification {
     font-family: 'Arial';
-    font-size: 16px;
+    font-size: 13px;
     color: #ff0000;
     line-height: 26px;
     margin-bottom: 25px;
@@ -415,12 +418,15 @@ html {
 }
 
 .modal__input {
-    display: block;
+    display: flex;
+    align-items: center;
     width: 100%;
     border-radius: 2px;
     border: 1px solid rgba(140, 151, 178, .4);
+    max-height: 32px;
     height: 32px;
-    padding: 0 9px;
+    resize: none;
+    padding: 8px 9px;
     box-sizing: border-box;
     font-family: 'Arial';
     color: #8c97b2;
