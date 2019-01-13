@@ -34,7 +34,7 @@ class App extends React.Component {
         this.addBook = this.addBook.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.readBook = this.readBook.bind(this);
-        //this.searchBooks = this.searchBooks.bind(this);
+        this.searchBooks = this.searchBooks.bind(this);
     }
 
     openModal() {
@@ -47,7 +47,7 @@ class App extends React.Component {
         document.querySelector('.modal__h').innerHTML = 'Add New Book';
         document.querySelectorAll('.modal__notification').forEach(item => {
             item.innerHTML = '';
-        })
+        });
         document.querySelector('.modal').style.display = 'block';
         document.querySelector('.modal__success').style.display = 'none';
         this.setState({
@@ -65,7 +65,7 @@ class App extends React.Component {
                 mostPopular: false,
                 freeBook: false
             } 
-        })
+        });
     }
 
     addBook(e) {
@@ -127,11 +127,16 @@ class App extends React.Component {
     }
 
     searchBooks(books, query) {
+        const uppercasedQuery = query.toUpperCase();
         let foundBooks = books.filter(book => {
-            for (let key in book) {   
-                if (book[key].indexOf(query) > -1) return true
-                else return false;
+            let matches = false;
+            for (let key in book) {
+                if (typeof book[key] === 'boolean') continue; 
+                if (book[key].toUpperCase().includes(uppercasedQuery)) {
+                    matches = true;
+                }
             }
+            return matches;
         });
         return foundBooks;
     }

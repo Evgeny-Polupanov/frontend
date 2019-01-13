@@ -9,13 +9,65 @@ class Content extends React.Component {
         super(props);
         this.state = {
             currentTab: 0,
-            allBooks: this.props.booksArr,
-            mostRecent: this.props.booksArr.filter(item => item.mostRecent),
-            mostPopular: this.props.booksArr.filter(item => item.mostPopular),
-            freeBooks: this.props.booksArr.filter(item => item.freeBook)
+            allBooks: [],
+            receivedBooks: [],
+            allBooksFilter: true,
+            mostRecentFilter: false,
+            mostPopularFilter: false,
+            freeBooksFilter: false,
+            searchQuery: ''
         };
         this.chooseTab = this.chooseTab.bind(this);
         this.searchSubmit = this.searchSubmit.bind(this);
+        this.chooseAllBooks=this.chooseAllBooks.bind(this);
+        this.chooseMostPopularBooks=this.chooseMostPopularBooks.bind(this);
+        this.chooseMostRecentBooks=this.chooseMostRecentBooks.bind(this);
+        this.chooseFreeBooks=this.chooseFreeBooks.bind(this);
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if ((state.receivedBooks.length === 0) || (state.receivedBooks !== props.booksArr)) {
+            if (state.allBooksFilter) {
+                const searchedBooks = props.searchBooks(
+                    props.booksArr,
+                    state.searchQuery
+                );
+                return {
+                    receivedBooks: props.booksArr,
+                    allBooks: searchedBooks   
+                }
+            }
+            else if (state.mostRecentFilter) {
+                const searchedBooks = props.searchBooks(
+                    props.booksArr,
+                    state.searchQuery
+                );
+                return {
+                    receivedBooks: props.booksArr,
+                    allBooks: searchedBooks.filter(item => item.mostRecent)   
+                }
+            }
+            else if (state.mostPopularFilter) {
+                const searchedBooks = props.searchBooks(
+                    props.booksArr,
+                    state.searchQuery
+                );
+                return {
+                    receivedBooks: props.booksArr,
+                    allBooks: searchedBooks.filter(item => item.mostPopular)   
+                }
+            }
+            else if (state.freeBooksFilter) {
+                const searchedBooks = props.searchBooks(
+                    props.booksArr,
+                    state.searchQuery
+                );
+                return {
+                    receivedBooks: props.booksArr,
+                    allBooks: searchedBooks.filter(item => item.freeBook)   
+                }
+            }
+        } 
     }
        
     chooseTab(e) {
@@ -28,21 +80,76 @@ class Content extends React.Component {
             currentTab: buttonsArr.indexOf(e.target)
         })
     }
+
+    chooseAllBooks() {
+        const searchedBooks = this.props.searchBooks(
+            this.state.receivedBooks,
+            this.state.searchQuery
+        );
+        this.setState({
+            allBooks: searchedBooks,
+            allBooksFilter: true,
+            mostRecentFilter: false,
+            mostPopularFilter: false,
+            freeBooksFilter: false,
+        })
+    }
     
-    searchSubmit(e) {
-        e.preventDefault();
+    chooseMostRecentBooks() {
+        const searchedBooks = this.props.searchBooks(
+            this.state.receivedBooks,
+            this.state.searchQuery
+        );
+        this.setState({
+            allBooks: searchedBooks.filter(item => item.mostRecent),
+            allBooksFilter: false,
+            mostRecentFilter: true,
+            mostPopularFilter: false,
+            freeBooksFilter: false,
+        })
+    }
+    
+    chooseMostPopularBooks() {
+        const searchedBooks = this.props.searchBooks(
+            this.state.receivedBooks,
+            this.state.searchQuery
+        );
+        this.setState({
+            allBooks: searchedBooks.filter(item => item.mostPopular),
+            allBooksFilter: false,
+            mostRecentFilter: false,
+            mostPopularFilter: true,
+            freeBooksFilter: false,
+        })
+    }
+    
+    chooseFreeBooks() {
+        const searchedBooks = this.props.searchBooks(
+            this.state.receivedBooks,
+            this.state.searchQuery
+        );
+        this.setState({
+            allBooks: searchedBooks.filter(item => item.freeBook),
+            allBooksFilter: false,
+            mostRecentFilter: false,
+            mostPopularFilter: false,
+            freeBooksFilter: true,
+        })
+    }
+    
+    searchSubmit(value) {
         let result;
-        if (document.querySelector('.content__search-input').value !== '') {
+        if (value !== '') {
             result = this.props.searchBooks(
-                this.props.booksArr,
-                document.querySelector('.content__search-input').value
+                this.state.receivedBooks,
+                value
             );
-        } else result = this.props.booksArr;
+        } else {
+            result = this.state.receivedBooks;
+        }
         this.setState({
             allBooks: result,
-            mostRecent: result.filter(item => item.mostRecent),
-            mostPopular: result.filter(item => item.mostPopular),
-            freeBooks: result.filter(item => item.freeBook)
+            searchQuery: value
         });
     }
 
@@ -52,15 +159,21 @@ class Content extends React.Component {
                <ContentHeading
                     tab={this.state.currentTab}
                     chooseTab={this.chooseTab}
-                    //searchBooks={this.props.searchBooks}
                     searchSubmit={this.searchSubmit}
-                    allBooks={this.state.allBooks}
+                    chooseAllBooks={this.chooseAllBooks}
+                    chooseMostPopularBooks={this.chooseMostPopularBooks}
+                    chooseMostRecentBooks={this.chooseMostRecentBooks}
+                    chooseFreeBooks={this.chooseFreeBooks}
+                    allBooksFilter={this.state.allBooksFilter}
+                    mostRecentFilter={this.state.mostRecentFilter}
+                    mostPopularFilter={this.state.mostPopularFilter}
+                    freeBooksFilter={this.state.freeBooksFilter}
                 />
                 <ContentContainer 
                     tab={this.state.currentTab} 
-                    booksArr={this.props.booksArr}
+                    booksArr={this.state.allBooks}
                     readBook={this.props.readBook}
-                    searchSubmit={this.props.searchSubmit}
+                    searchSubmit={this.searchSubmit}
                     allBooks={this.state.allBooks}
                     mostRecent={this.state.mostRecent}
                     mostPopular={this.state.mostPopular}
