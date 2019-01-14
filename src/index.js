@@ -27,7 +27,8 @@ class App extends React.Component {
                 mostPopular: false,
                 freeBook: false
             },
-            errors: {}
+            errors: {},
+            readingMode: false
         }
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -64,7 +65,8 @@ class App extends React.Component {
                 mostRecent: false,
                 mostPopular: false,
                 freeBook: false
-            } 
+            },
+            readingMode: false 
         });
     }
 
@@ -92,10 +94,16 @@ class App extends React.Component {
         if (form.author === '') {
             errors.author = 'Enter Author'
         }
+        if (form.publisher === '') {
+            errors.publisher = 'Enter Publisher'
+        }
         if (form.isbn !== '') {
             if (!form.isbn.match(/^\d+$/)) {
                 errors.isbn = 'ISBN should contain only numbers'
             }
+        }
+        if (form.isbn === '') {
+            errors.isbn = 'Enter ISBN'
         }
         return errors;
     }
@@ -121,7 +129,8 @@ class App extends React.Component {
         this.openModal();
         document.querySelector('.modal__toolbar').style.display = 'none';
         this.setState({
-            newBook: item
+            newBook: item,
+            readingMode: true
         });
         document.querySelector('.modal__h').innerHTML = item.title;
     }
@@ -158,6 +167,7 @@ class App extends React.Component {
                     addBook={this.addBook}
                     handleChange={this.handleChange}
                     errors={this.state.errors}
+                    readingMode={this.state.readingMode}
                 />
             </main>
         )

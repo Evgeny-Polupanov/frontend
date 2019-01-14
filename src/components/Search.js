@@ -25,7 +25,7 @@ class Search extends React.Component {
     render() {
         return (
             <form className="content__search" onSubmit={this.onSubmit}>
-                <textarea className="content__search-input" 
+                <input type="text" className="content__search-input" 
                 onChange={this.onChange} 
                 name="search" placeholder="Enter a keyword" 
                 value={this.state.value}

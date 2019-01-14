@@ -384,6 +384,22 @@ html {
     background-color: #97b3ce;
     color: #fff;
     transition: .3s;
+    
+    &:nth-child(1) {
+        background-image: url('/images/modal-general-chosen.png');
+    }
+
+    &:nth-child(2) {
+        background-image: url('/images/modal-genre-chosen.png');
+    }
+
+    &:nth-child(3) {
+        background-image: url('/images/modal-poster-chosen.png');
+    }
+
+    &:nth-child(4) {
+        background-image: url('/images/modal-info-chosen.png');
+    }
 }
 
 .modal__content {

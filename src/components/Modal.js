@@ -68,6 +68,7 @@ class Modal extends React.Component {
                                 freeBook={this.props.newBook.freeBook}
                                 handleChange={this.props.handleChange}
                                 errors={this.props.errors}
+                                readingMode={this.props.readingMode}
                             />
                         </div>
                         <div className="modal__toolbar">
